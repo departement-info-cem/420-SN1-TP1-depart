@@ -2,7 +2,7 @@
 
 from racine import *
 # A compléter par vous, changez, ajoutez des cas pour pouvoir tester souvent votre code.
-
+# si un test du prof ne passe pas, tu peux le ramener ici pour expérimenter et déboguer.
 
 # un premier test la racine de 9 devrait être 3
 resultat = racine_arrondi_dicho(9)
