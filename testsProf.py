@@ -35,10 +35,6 @@ test("Dichotomie - irrationnel 2 (2 déc.)",        racine_arrondi_dicho(2, 2), 
 test("Dichotomie - irrationnel 2 (5 déc.)",        racine_arrondi_dicho(2),            1.41421)
 test("Dichotomie - irrationnel 2 (8 déc.)",        racine_arrondi_dicho(2, 8),         1.41421356)
 le_temps_dun_commit()
-print("Ces tests n'ont pas d'impact sur la note")
-test("Dichotomie (pas dans la note) - précise (16)",               racine_arrondi_dicho(2, 16),        1.4142135623730950)
-test("Dichotomie (pas dans la note) - précise (18)",               racine_arrondi_dicho(2, 18),        1.414213562373095048)
-
 print("\n\n")
 
 # tests d'exception pour racine_arrondi_dicho nombre négatif ou précision négative
@@ -46,8 +42,11 @@ test_exception("Dichotomie - nombre négatif", lambda: racine_arrondi_dicho(-5))
 test_exception("Dichotomie - précision négative", lambda: racine_arrondi_dicho(1, -5))
 
 le_temps_dun_commit()
+print("Ces tests n'ont pas d'impact sur la note")
+test("Dichotomie (pas dans la note) - précise (16)",               racine_arrondi_dicho(2, 16),        1.4142135623730950)
+test("Dichotomie (pas dans la note) - précise (18)",               racine_arrondi_dicho(2, 18),        1.414213562373095048)
 
-print("\n\n")# oui 2.24
+print("\n\n\n\n")
 
 # --- racine_arrondi_chiffres ---
 # TODO discuter ce n'est pas l'arrondi (arrondi par le dessous ok, mais pas l'arrondi )  il faudrait aller un chiffre plus loin ou changer le critère d'arrêt pour le même que dichotomie
@@ -72,6 +71,11 @@ test("Chiffres - irrationnel 2 (8 ch.)",           racine_arrondi_chiffres(2, 8)
 print("Les 2 tests suivants n'ont pas d'impact sur la note (ce qui ne t'empêche pas de voir avec ton débogueur puis prof ce qui cloche)")
 test("Chiffres - étrange 0.09000000000000000",                 racine_arrondi_chiffres(0.09000000000000000),     0.3)
 test("Chiffres - étrange 0.09000000000000001",                 racine_arrondi_chiffres(0.09000000000000001),     0.3)
+
+print("\n\n")
+
+test_exception("dicho(-3)    - ValueError attendu", lambda: racine_arrondi_dicho(-3))
+
 
 le_temps_dun_commit()
 
@@ -304,7 +308,6 @@ test("n(9, 4, 10)", racine_arrondi_n(9, 4, 10), 1.7320508076)
 test("n(81, 4, 10)", racine_arrondi_n(81, 4, 10), 3.0)
 test("n(123, 4, 10)", racine_arrondi_n(123, 4, 10), 3.3302457126)
 
-# --- corrAncien : paramètres invalides ---
 
 test_exception("dicho(-3)    - ValueError attendu", lambda: racine_arrondi_dicho(-3))
 test_exception("n(-3)        - ValueError attendu", lambda: racine_arrondi_n(-3))
