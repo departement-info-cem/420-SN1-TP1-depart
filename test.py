@@ -13,10 +13,3 @@ print(" réussite ? ", resultat == 3.0)
 resultat = racine_arrondi_dicho(2, 1)
 print(resultat)
 print(" réussite ? ", resultat == 1.4)
-
-a = .1 +.1 + .1
-carre = a * a
-print(a)
-print(carre)
-print(racine_arrondi_chiffres(0.09000000000000002))
-print(racine_arrondi_dicho(0.09000000000000001))
