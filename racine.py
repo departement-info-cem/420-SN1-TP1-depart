@@ -1,12 +1,11 @@
 # Ce fichier est un module
 # On y définit des fonctions mais on ne les appelle pas
 
-
 def racine_arrondi_dicho(nombre, decimales = 5):
-  return 0.0
+  return -1.0
 
 def racine_arrondi_chiffres(nombre, decimales = 5):
-  return 0.0
+  return -1.0
 
 def racine_arrondi_n(nombre, exposant=2,  decimales = 5):
   """
@@ -25,8 +24,8 @@ def racine_arrondi_n(nombre, exposant=2,  decimales = 5):
         - si `exposant` est inférieur ou égal à 0
         - si `decimales` est négatif
   """
-  return 0.0
+  return -1.0
 
 def racine(nombre):
-  return 0.0
+  return -1.0
   	 		  	  	 		  	    				 		 	 		     	
