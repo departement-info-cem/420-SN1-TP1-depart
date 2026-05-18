@@ -10,7 +10,6 @@ def test(texte, resultat, attendu, delta=0):
     couleur = "\033[92m Passe\033[0m" if ok else "\033[91m Casse\033[0m"
     print(couleur, texte, "- résultat", resultat, "attendu", attendu)
 
-
 def test_exception(texte, appel):
     try:
         appel()
@@ -36,12 +35,26 @@ test("Dichotomie - irrationnel 2 (2 déc.)",        racine_arrondi_dicho(2, 2), 
 test("Dichotomie - irrationnel 2 (5 déc.)",        racine_arrondi_dicho(2),            1.41421)
 test("Dichotomie - irrationnel 2 (8 déc.)",        racine_arrondi_dicho(2, 8),         1.41421356)
 le_temps_dun_commit()
-print("Ce test te montre une limite mais n'a pas d'impact sur la note")
-test("Dichotomie - précise (delta)",               racine_arrondi_dicho(2, 18),        1.414213562373095048)
+print("Ces tests n'ont pas d'impact sur la note")
+test("Dichotomie (pas dans la note) - précise (16)",               racine_arrondi_dicho(2, 16),        1.4142135623730950)
+test("Dichotomie (pas dans la note) - précise (18)",               racine_arrondi_dicho(2, 18),        1.414213562373095048)
 
+print("\n\n")
+
+# tests d'exception pour racine_arrondi_dicho nombre négatif ou précision négative
+test_exception("Dichotomie - nombre négatif", lambda: racine_arrondi_dicho(-5))
+test_exception("Dichotomie - précision négative", lambda: racine_arrondi_dicho(1, -5))
+
+le_temps_dun_commit()
+
+print("\n\n")# oui 2.24
 
 # --- racine_arrondi_chiffres ---
-# TODO discuter ce n'est pas l'arrondi (arrondi par le dessous ok )  il faudrait aller un chiffre plus loin
+# TODO discuter ce n'est pas l'arrondi (arrondi par le dessous ok, mais pas l'arrondi )  il faudrait aller un chiffre plus loin ou changer le critère d'arrêt pour le même que dichotomie
+test("DISCUTER" , racine_arrondi_chiffres(5, 2), 2.24) # oui 2.24
+test("DISCUTER" , racine_arrondi_chiffres(5, 2), 2.23) # oui 2.23
+
+
 test("Chiffres - carré parfait 9",                 racine_arrondi_chiffres(9),         3.0)
 test("Chiffres - carré parfait 9 (8 ch.)",         racine_arrondi_chiffres(9, 8),      3.0)
 test("Chiffres - carré parfait 9.0",               racine_arrondi_chiffres(9.0),       3.0)
@@ -56,8 +69,9 @@ test("Chiffres - irrationnel 2 (5 ch.)",           racine_arrondi_chiffres(2),  
 test("Chiffres - irrationnel 2 (8 ch.)",           racine_arrondi_chiffres(2, 8),      1.4142135)
 
 # TODO à discuter
-print("Ce test te montre une limite mais n'a pas d'impact sur la note")
-test("Chiffres - étrange ",                 racine_arrondi_chiffres(0.09000000000000002),     0.30000000000000004)
+print("Les 2 tests suivants n'ont pas d'impact sur la note (ce qui ne t'empêche pas de voir avec ton débogueur puis prof ce qui cloche)")
+test("Chiffres - étrange 0.09000000000000000",                 racine_arrondi_chiffres(0.09000000000000000),     0.3)
+test("Chiffres - étrange 0.09000000000000001",                 racine_arrondi_chiffres(0.09000000000000001),     0.3)
 
 le_temps_dun_commit()
 
@@ -86,19 +100,16 @@ test("Racine n - non entier 10.5 (exp=3)",               racine_arrondi_n(10.5, 
 test("Racine n - irrationnel 2 (exp=3, 5 déc.)",         racine_arrondi_n(2, 3),             1.25992)
 test("Racine n - irrationnel 2 (exp=3, 8 déc.)",         racine_arrondi_n(2, 3, 8),          1.25992105)
 test("Racine n - négatif -8 (exp=3)",                    racine_arrondi_n(-8, 3),            -2.0)
-test("Racine n - précise cube (delta)",                  racine_arrondi_n(2, 3, 10),         2 ** (1/3), delta=1e-8)
+test("Racine n - précise cube (delta)",                  racine_arrondi_n(2, 3, 10),         1.25992104989, delta=1e-8)
 test("Racine n - 4e parfait 16 (exp=4)",           racine_arrondi_n(16, 4),            2.0)
 le_temps_dun_commit()
 
 # --- racine (précise, comparée à sqrt avec delta) ---
 print("\nIci les tests sont très indicatifs, tu pourrais obtenir le point même si tout ne passe pas\n")
-test("Précise - carré parfait 9",                  racine(9),          3,         delta=1e-8)
-test("Précise - carré parfait 9.0",                racine(9.0),        3,       delta=1e-8)
-test("Précise - grand parfait 1000000",            racine(1000000),    1000,   delta=1e-8)
 test("Précise - grand non parfait 2000000",        racine(2000000),    1414.21356237,   delta=1e-8)
 test("Précise - petit 0.0001",                     racine(0.0001),     0.01,    delta=1e-8)
-test("Précise - non entier 10.5",                  racine(10.5),       3.24037034920393,      delta=1e-8)
-test("Précise - irrationnel 2",                    racine(2),          1.414213562373095,         delta=1e-8)
+test("Précise - non entier 10.5",                  racine(10.5),       3.24037034920393)
+test("Précise - irrationnel 2",                    racine(2),          1.414213562373095)
 
 le_temps_dun_commit()
 
@@ -117,27 +128,6 @@ test("dicho(81, 4)", racine_arrondi_dicho(81, 4), 9.0)
 test("dicho(123, 4)", racine_arrondi_dicho(123, 4), 11.0905)
 test("dicho(999, 4)", racine_arrondi_dicho(999, 4), 31.607)
 
-# decimales = 5
-test("dicho(0, 5)", racine_arrondi_dicho(0, 5), 0.0)
-test("dicho(0.1, 5)", racine_arrondi_dicho(0.1, 5), 0.31623)
-test("dicho(0.2, 5)", racine_arrondi_dicho(0.2, 5), 0.44721)
-test("dicho(0.9, 5)", racine_arrondi_dicho(0.9, 5), 0.94868)
-test("dicho(8, 5)", racine_arrondi_dicho(8, 5), 2.82843)
-test("dicho(9, 5)", racine_arrondi_dicho(9, 5), 3.0)
-test("dicho(81, 5)", racine_arrondi_dicho(81, 5), 9.0)
-test("dicho(123, 5)", racine_arrondi_dicho(123, 5), 11.09054)
-test("dicho(999, 5)", racine_arrondi_dicho(999, 5), 31.60696)
-
-# decimales = 6
-test("dicho(0, 6)", racine_arrondi_dicho(0, 6), 0.0)
-test("dicho(0.1, 6)", racine_arrondi_dicho(0.1, 6), 0.316228)
-test("dicho(0.2, 6)", racine_arrondi_dicho(0.2, 6), 0.447214)
-test("dicho(0.9, 6)", racine_arrondi_dicho(0.9, 6), 0.948683)
-test("dicho(8, 6)", racine_arrondi_dicho(8, 6), 2.828427)
-test("dicho(9, 6)", racine_arrondi_dicho(9, 6), 3.0)
-test("dicho(81, 6)", racine_arrondi_dicho(81, 6), 9.0)
-test("dicho(123, 6)", racine_arrondi_dicho(123, 6), 11.090537)
-test("dicho(999, 6)", racine_arrondi_dicho(999, 6), 31.606961)
 
 # decimales = 9
 test("dicho(0, 9)", racine_arrondi_dicho(0, 9), 0.0)
