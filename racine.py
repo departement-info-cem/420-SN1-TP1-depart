@@ -28,4 +28,4 @@ def racine_arrondi_n(nombre, exposant=2,  decimales = 5):
 
 def racine(nombre):
   return -1.0
-  	 		  	  	 		  	    				 		 	 		     	
+
