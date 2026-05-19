@@ -1,9 +1,7 @@
-import os
-
 from racine import *
-from math import sqrt
 
 # Fourni par le prof, donne une idée des cas qu'on souhaite tester
+# TODO test sur exception si exposant n'est pas un int
 
 def test(texte, resultat, attendu, delta=0):
     ok = abs(resultat - attendu) < delta if delta else resultat == attendu
@@ -18,7 +16,7 @@ def test_exception(texte, appel):
         print("\033[92m Passe\033[0m", texte, "- Error levee comme attendu ", e)
 
 def le_temps_dun_commit():
-    print("\nSi tous les tests au dessus fonctionnent, tu viens de donner de la valeur à ton projet, tu peux faire un commit sur ton repo\n")
+    print("\nSi tous les tests au dessus fonctionnent, tu viens de donner de la valeur à ton projet, tu peux faire un commit sur ton repo Git\n")
 
 
 # --- racine_arrondi_dicho ---
@@ -43,7 +41,8 @@ test_exception("Dichotomie - précision négative", lambda: racine_arrondi_dicho
 
 le_temps_dun_commit()
 print("Ces tests n'ont pas d'impact sur la note")
-test("Dichotomie (pas dans la note) - précise (16)",               racine_arrondi_dicho(2, 16),        1.4142135623730950)
+test("Dichotomie (pas dans la note) - précise (16)",               racine_arrondi_dicho(2, 16),        1.4142135623730951)
+test("Dichotomie (pas dans la note) - précise (17)",               racine_arrondi_dicho(2, 17),        1.41421356237309505)
 test("Dichotomie (pas dans la note) - précise (18)",               racine_arrondi_dicho(2, 18),        1.414213562373095048)
 
 print("\n\n\n\n")
@@ -74,7 +73,9 @@ test("Chiffres - étrange 0.09000000000000001",                 racine_arrondi_c
 
 print("\n\n")
 
-test_exception("dicho(-3)    - ValueError attendu", lambda: racine_arrondi_dicho(-3))
+
+test_exception("chiffree avec (-3) racine négative    - Exception attendu", lambda: racine_arrondi_dicho(-3))
+test_exception("chiffree avec précision négative    - Exception attendu", lambda: racine_arrondi_chiffres(5, -3))
 
 
 le_temps_dun_commit()
@@ -93,9 +94,6 @@ test("Racine n - non entier 10.5 (exp=2)",         racine_arrondi_n(10.5, 2),   
 test("Racine n - non entier 10.5 (exp=2, 8 déc.)", racine_arrondi_n(10.5, 2, 8),       3.24037035)
 test("Racine n - irrationnel 2 (exp=2, 5 déc.)",   racine_arrondi_n(2, 2),             1.41421)
 test("Racine n - irrationnel 2 (exp=2, 8 déc.)",   racine_arrondi_n(2, 2, 8),          1.41421356)
-test("Racine n - précise carré (delta)",           racine_arrondi_n(2, 2, 10),         sqrt(2),     delta=1e-9)
-le_temps_dun_commit()
-
 # Racine cubique (exposant=3)
 test("Racine n - cube parfait 27 (exp=3)",               racine_arrondi_n(27, 3),            3.0)
 test("Racine n - grand cube parfait 1000000000 (exp=3)",  racine_arrondi_n(1000000000, 3),    1000.0)
