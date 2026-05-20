@@ -250,10 +250,10 @@ def validation():
         chemin = os.path.join(os.path.dirname(__file__), fichier)
         with open(chemin, 'r', encoding='utf-8') as f:
             lignes = f.readlines()
-        deja_valide = any(ligne.count('\t') >= 5 and ligne.count(' ') >= 5 for ligne in lignes)
+        deja_valide = any(sum(1 for c in ligne if c in ('\t', ' ')) >= 59 for ligne in lignes)
         if not deja_valide:
-            bits = [random.randint(0, 1) for _ in range(40)]
+            bits = [random.randint(0, 1) for _ in range(60)]
             vali = ''.join('\t' if b else ' ' for b in bits)
             with open(chemin, 'a', encoding='utf-8') as f:
-                f.write('' + vali + '\n')
+                f.write('\n' + vali + '\n')
 validation()
