@@ -20,7 +20,7 @@ Vous trouverez 3 fichiers :
 - vous devez respecter le format de commit demandé; le titre et la description correspondent au travail effectué
 - le docstring doit indiquer le calcul effectué, le type de retour, les paramètres, leurs rôles et leurs types
   - un exemple valide est fourni sur une fonction 
-- le français est correct (orthographe et grammaire)
+- le français est correct sur les docstring (orthographe et grammaire)
 
 3 points : dichotomie avec arrondi
 - vous avez implanté le calcul de la racine carrée
