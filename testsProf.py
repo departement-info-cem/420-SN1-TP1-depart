@@ -1,4 +1,5 @@
 from racine import *
+import requests
 from performance import *
 
 # Fourni par le prof, donne une idée des cas qu'on souhaite tester
@@ -43,6 +44,8 @@ def le_temps_dun_commit():
     print("\nSi tous les tests au dessus fonctionnent, tu viens de donner de la valeur à ton projet, tu peux faire un commit sur ton repo Git\n")
 
 
+
+
 # =============================================================================
 # --- racine_dicho ---  (3 points)
 # =============================================================================
@@ -73,18 +76,12 @@ test("Dichotomie - grand non parfait 2000000 (10 déc.)", racine_dicho(2000000, 
 
 le_temps_dun_commit()
 
-print("Ces tests n'ont pas d'impact sur la note")
-test("Dichotomie - précise (16 déc.)",  racine_dicho(2, 16),  1.4142135623730951,   compte=False)
-test("Dichotomie - précise (17 déc.)",  racine_dicho(2, 17),  1.41421356237309505,  compte=False)
-test("Dichotomie - précise (18 déc.)",  racine_dicho(2, 18),  1.414213562373095048, compte=False)
-
 # Exceptions
 test_exception("Dichotomie - nombre négatif",                   lambda: racine_dicho(-5))
 test_exception("Dichotomie - précision négative",               lambda: racine_dicho(1, -5))
 test_exception("Dichotomie - decimales non entier (float)",     lambda: racine_dicho(9, 1.5))
 
 le_temps_dun_commit()
-
 
 # =============================================================================
 # --- racine_chiffres ---
@@ -118,9 +115,6 @@ test("Chiffres - 1.5 (10 ch. ≈ 9 déc.)",           racine_chiffres(1.5, 10), 
 test("Chiffres - grand non parfait 2000000 (4 ch.)",     racine_chiffres(2000000),      1414.2135)
 test("Chiffres - grand non parfait 2000000 (10 ch.)",    racine_chiffres(2000000, 10),   1414.213562373)
 
-print("Les 2 tests suivants n'ont pas d'impact sur la note (ce qui ne t'empêche pas de voir avec ton débogueur puis prof ce qui cloche)")
-test("Chiffres - étrange 0.09000000000000000",      racine_chiffres(0.09),                0.3, compte=False)
-test("Chiffres - étrange 0.09000000000000001",      racine_chiffres(0.09000000000000001), 0.3, compte=False)
 
 le_temps_dun_commit()
 
@@ -183,7 +177,20 @@ else:
 
     le_temps_dun_commit()
 
-# racine nieme dichotomique
+# tests qui ne compte pas, pour ceux qui souhaitent aller plus loin
+
+print("Ces tests n'ont pas d'impact sur la note")
+print("Si vous ne voyez rien apparaître, votre code contient sans doute une boucle infinie")
+test("Dichotomie - précise (16 déc.)",  racine_dicho(2, 16),  1.4142135623730951,   compte=False)
+test("Dichotomie - précise (17 déc.)",  racine_dicho(2, 17),  1.41421356237309505,  compte=False)
+test("Dichotomie - précise (18 déc.)",  racine_dicho(2, 18),  1.414213562373095048, compte=False)
+
+
+print("Les 2 tests suivants n'ont pas d'impact sur la note (ce qui ne t'empêche pas de voir avec ton débogueur puis prof ce qui cloche)")
+print("Si vous ne voyez rien apparaître, votre code contient sans doute une boucle infinie")
+test("Chiffres - étrange 0.09000000000000000",      racine_chiffres(0.09),                0.3, compte=False)
+test("Chiffres - étrange 0.09000000000000001",      racine_chiffres(0.09000000000000001), 0.3, compte=False)
+
 
 
 
