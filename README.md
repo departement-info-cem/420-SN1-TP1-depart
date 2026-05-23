@@ -37,11 +37,14 @@ Vous trouverez 3 fichiers :
 
 1 point : comparez les performances :
 - on souhaite comparer les performances de vos 2 solutions avec la fonction Python fournie (`math.sqrt`)
+- une fonction qui crée une liste 
+  - `nombreAppels` nombres tirés aléatoirement entre 1 et `borneMax` (voir ci-dessous)
+  - `valeurMax` est un nombre float qui correspond à la plus grande valeur que peut prendre les éléments de la liste
 - on veut que vous définissiez une fonction **perf** qui prend 2 paramètres, tous les deux optionnels :
-  - borneMax avec une valeur par défaut qui soit le plus grand nombre float possible en Python (petite recherche Google ici)
-  - nombreAppels avec une valeur par défaut de 10000
+  - prendre une liste de nombres tirés aléatoirement entre 1 et `borneMax` (voir ci-dessous) et calculer la racine carrée de chacun de ces nombres avec les 3 méthodes
 - la fonction doit, pour chaque méthode, mesurer le temps nécessaire pour calculer les racines carrées de `nombreAppels` nombres, tous tirés entre 1 et `borneMax`. Pour chaque méthode, on veut le temps total pour tous les appels et le temps moyen par appel.
 - exemple d'affichage pour un appel de perf avec borneMax 1.0, nombreAppels de 1000 (valeurs aberrantes)
+- AJOUTER UNE LIMITE DE TEMPS D'EXECUTION AVEC DEDUCTION DE POINTS
 ```
 Performance des trois méthodes pour 1000 nombres entre 0.0 et 1.0
 math.sqrt           total : 1001ms          moyen: 1.001ms
